@@ -1,0 +1,26 @@
+{
+  "name": "metaship-ru/pimpay-api",
+  "keywords": [
+    "PimPay"
+  ],
+  "homepage": "https://metaship.ru",
+  "description": "",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~6.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "PimPayRu\\PimPayApi\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  }
+}
