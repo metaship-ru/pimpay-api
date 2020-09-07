@@ -18,7 +18,7 @@ class PimPayApi_SoapClient extends SoapClient
      * @param array     $wsdl
      * @param array     $options
      */
-    public function __construct(PimPayApi $api, $wsdl, array $options = null)
+    public function __construct(AbstractPimpayApi $api, $wsdl, array $options = null)
     {
         $this->_context = stream_context_create();
         $options = array_merge($options, array('stream_context' => $this->_context));
