@@ -14,7 +14,7 @@ abstract class AbstractPimpayApi
     protected $_token;
 
     /** @var string Содержимое WSDL */
-    protected $_wsdl;
+    public $_wsdl;
 
     /** @var PimPayApi_SoapClient SOAP клиент */
     protected $_soapClient;
@@ -62,7 +62,7 @@ abstract class AbstractPimpayApi
      * @param  PimPayApi_AcceptClientParams $params  Параметры клиента
      * @return PimPayApi_ClientInfo                  Возвратная информация по клиенту
      */
-    public function acceptClient(PimPayApi_AcceptClientParams $params)
+    public function acceptClient($params)
     {
         return $this->_getSoapClient()->acceptClient($this->_token, $params);
     }
@@ -82,7 +82,7 @@ abstract class AbstractPimpayApi
      * Добавить/обновить заказы
      *
      * @param  PimPayApi_Order[] $orders   Карточка заказа
-     * @return $response                   Информация о добавленных заказах
+     * @return PimPayApi_UpsertResultResponse $response                   Информация о добавленных заказах
      */
     public function upsertOrders($orders)
     {
@@ -288,7 +288,7 @@ abstract class AbstractPimpayApi
     {
         $this->_setWdsl();
 
-        $this->_soapClient = new PimPayApi_SoapClient($this, 'data://text/xml;base64,' . base64_encode($this->_wsdl), array(
+        $this->_soapClient = new PimPayApi_SoapClient($this, $this->_wsdl, array(
                 'classmap' => array(
                     'AcceptClientParams'           => PimPayApi_AcceptClientParams::class,
                     'ClientInfo'                   => PimPayApi_ClientInfo::class,
